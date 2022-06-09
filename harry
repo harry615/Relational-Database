@@ -1,0 +1,311 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.9 (Ubuntu 12.9-2.pgdg20.04+1)
+-- Dumped by pg_dump version 12.9 (Ubuntu 12.9-2.pgdg20.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE universe;
+--
+-- Name: universe; Type: DATABASE; Schema: -; Owner: freecodecamp
+--
+
+CREATE DATABASE universe WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+
+
+ALTER DATABASE universe OWNER TO freecodecamp;
+
+\connect universe
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: galaxy; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.galaxy (
+    galaxy_id integer NOT NULL,
+    description text,
+    name character varying(20) NOT NULL,
+    age_in_millions_of_years numeric(20,10),
+    distance_from_earth numeric(20,10),
+    galaxy_types character varying(20)
+);
+
+
+ALTER TABLE public.galaxy OWNER TO freecodecamp;
+
+--
+-- Name: moon; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.moon (
+    moon_id integer NOT NULL,
+    description text,
+    name character varying(20) NOT NULL,
+    age_in_millions_of_years numeric(20,10),
+    moon_types character varying(20),
+    is_spherical boolean,
+    planet_id integer
+);
+
+
+ALTER TABLE public.moon OWNER TO freecodecamp;
+
+--
+-- Name: planet; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.planet (
+    planet_id integer NOT NULL,
+    description text,
+    name character varying(20) NOT NULL,
+    age_in_millions_of_years numeric(20,10),
+    planet_types character varying(20),
+    has_life boolean,
+    star_id integer
+);
+
+
+ALTER TABLE public.planet OWNER TO freecodecamp;
+
+--
+-- Name: solar_system; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.solar_system (
+    solar_system_id integer NOT NULL,
+    description text,
+    number_of_planets integer,
+    number_of_suns integer,
+    name character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.solar_system OWNER TO freecodecamp;
+
+--
+-- Name: star; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.star (
+    star_id integer NOT NULL,
+    name character varying(20) NOT NULL,
+    age_in_millions_of_years numeric(20,10),
+    star_types character varying(20),
+    galaxy_id integer
+);
+
+
+ALTER TABLE public.star OWNER TO freecodecamp;
+
+--
+-- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.galaxy VALUES (1, 'First Galaxy', 'Galaxy1', 124582953.1390410000, 13424.2300000000, 'LARGE');
+INSERT INTO public.galaxy VALUES (2, 'Second Galaxy', 'Galaxy2', 1242523.1392341000, 12342344.2300000000, 'LARGE');
+INSERT INTO public.galaxy VALUES (3, 'Third Galaxy', 'Galaxy3', 75723.7979410000, 12856744.7585623000, 'MEDIUM');
+INSERT INTO public.galaxy VALUES (4, 'Fourth Galaxy', 'Galaxy4', 71235723.7912794100, 856744.7158562300, 'MEDIUM');
+INSERT INTO public.galaxy VALUES (5, 'Fifth Galaxy', 'Galaxy5', 12584924.1247972400, 982435.2342149600, 'MEDIUM');
+INSERT INTO public.galaxy VALUES (6, 'Sixth Galaxy', 'Galaxy6', 1486623.6879410000, 89856744.9788623000, 'SMALL');
+
+
+--
+-- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.moon VALUES (1, '1 Moon', 'Moon1', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (2, '2 Moon', 'Moon2', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (3, '3 Moon', 'Moon3', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (4, '4 Moon', 'Moon4', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (5, '5 Moon', 'Moon5', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (6, '6 Moon', 'Moon6', 807124.1240970000, 'waxing crescent moon', false, 3);
+INSERT INTO public.moon VALUES (7, '7 Moon', 'Moon7', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (8, '8 Moon', 'Moon8', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (9, '9 Moon', 'Moon9', 807124.1240970000, 'waxing crescent moon', false, 3);
+INSERT INTO public.moon VALUES (13, '13 Moon', 'Moon13', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (10, '10 Moon', 'Moon10', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (11, '11 Moon', 'Moon11', 807124.1240970000, 'waxing crescent moon', false, 3);
+INSERT INTO public.moon VALUES (12, '12 moon', 'moon12', 97149.0831590000, 'first quater moon', true, 4);
+INSERT INTO public.moon VALUES (14, '14 Moon', 'Moon14', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (15, '15 Moon', 'Moon15', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (16, '16 Moon', 'Moon16', 807124.1240970000, 'waxing crescent moon', false, 3);
+INSERT INTO public.moon VALUES (17, '17 moon', 'moon17', 97149.0831590000, 'first quater moon', true, 4);
+INSERT INTO public.moon VALUES (18, '18 Moon', 'Moon18', 871924871.1212319000, 'new moon', true, 1);
+INSERT INTO public.moon VALUES (19, '19 Moon', 'Moon19', 809712.1289070000, 'full moon', false, 2);
+INSERT INTO public.moon VALUES (20, '20 Moon', 'Moon20', 807124.1240970000, 'waxing crescent moon', false, 3);
+INSERT INTO public.moon VALUES (21, '21 moon', 'moon21', 97149.0831590000, 'first quater moon', true, 4);
+
+
+--
+-- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.planet VALUES (1, '1 planet', 'Planet1', 120941.1240800000, 'Gas Giant', true, 1);
+INSERT INTO public.planet VALUES (2, '2 planet', 'Planet2', 53741.1268440800, 'Super Earth', true, 2);
+INSERT INTO public.planet VALUES (3, '3 planet', 'Planet3', 53741.2568750800, 'Neptune like', false, 2);
+INSERT INTO public.planet VALUES (4, '4 planet', 'Planet4', 8124.0813512000, 'Terrestrial', false, 2);
+INSERT INTO public.planet VALUES (5, '5 planet', 'Planet5', 8124912.0812408000, 'Gas Giant', true, 3);
+INSERT INTO public.planet VALUES (6, '6 planet', 'Planet6', 901375.0812424000, 'Super Earth', true, 3);
+INSERT INTO public.planet VALUES (7, '4 planet', 'Planet7', 8124.0813512000, 'Terrestrial', false, 2);
+INSERT INTO public.planet VALUES (8, '5 planet', 'Planet8', 8124912.0812408000, 'Gas Giant', true, 3);
+INSERT INTO public.planet VALUES (9, '6 planet', 'Planet9', 901375.0812424000, 'Super Earth', true, 3);
+INSERT INTO public.planet VALUES (10, '4 planet', 'Planet10', 8124.0813512000, 'Terrestrial', false, 2);
+INSERT INTO public.planet VALUES (11, '5 planet', 'Planet11', 8124912.0812408000, 'Gas Giant', true, 3);
+INSERT INTO public.planet VALUES (12, '6 planet', 'Planet12', 901375.0812424000, 'Super Earth', true, 3);
+
+
+--
+-- Data for Name: solar_system; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.solar_system VALUES (1, 'small solar system', 3, 1, 'small system');
+INSERT INTO public.solar_system VALUES (2, 'medium solar system', 6, 1, 'medium system');
+INSERT INTO public.solar_system VALUES (3, 'large solar system', 15, 2, 'large system');
+
+
+--
+-- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.star VALUES (1, 'Star1', 7135690.7324000000, 'LARGE', 1);
+INSERT INTO public.star VALUES (2, 'Star2', 1347590.7464324000, 'LARGE', 1);
+INSERT INTO public.star VALUES (3, 'Star3', 972149.9814120000, 'LARGE', 2);
+INSERT INTO public.star VALUES (4, 'Star4', 12349824.9124980000, 'MEDIUM', 2);
+INSERT INTO public.star VALUES (5, 'Star5', 9871246.7129570000, 'SMALL', 2);
+INSERT INTO public.star VALUES (6, 'Star6', 124957824.9724000000, 'SMALL', 3);
+
+
+--
+-- Name: galaxy galaxy_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_name_key UNIQUE (name);
+
+
+--
+-- Name: galaxy galaxy_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_pkey PRIMARY KEY (galaxy_id);
+
+
+--
+-- Name: moon moon_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_name_key UNIQUE (name);
+
+
+--
+-- Name: moon moon_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_pkey PRIMARY KEY (moon_id);
+
+
+--
+-- Name: planet planet_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_name_key UNIQUE (name);
+
+
+--
+-- Name: planet planet_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_pkey PRIMARY KEY (planet_id);
+
+
+--
+-- Name: solar_system solar_system_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.solar_system
+    ADD CONSTRAINT solar_system_name_key UNIQUE (name);
+
+
+--
+-- Name: solar_system solar_system_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.solar_system
+    ADD CONSTRAINT solar_system_pkey PRIMARY KEY (solar_system_id);
+
+
+--
+-- Name: star star_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_name_key UNIQUE (name);
+
+
+--
+-- Name: star star_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_pkey PRIMARY KEY (star_id);
+
+
+--
+-- Name: moon moon_planet_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_planet_id_fkey FOREIGN KEY (planet_id) REFERENCES public.planet(planet_id);
+
+
+--
+-- Name: planet planet_star_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_star_id_fkey FOREIGN KEY (star_id) REFERENCES public.star(star_id);
+
+
+--
+-- Name: star star_galaxy_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_galaxy_id_fkey FOREIGN KEY (galaxy_id) REFERENCES public.galaxy(galaxy_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
